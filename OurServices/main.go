@@ -38,6 +38,6 @@ func main() {
 	router := gin.Default()
 	router.GET("/OurCurrentServices", getAllOurServices)
 	router.POST("/AddService", postAddService)
-
+	router.GET("/GetById")
 	router.Run("localhost:8080")
 }
