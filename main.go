@@ -1,9 +1,7 @@
 package main
 
 import (
-	"net/http"
-
-	"github.com/gin-gonic/gin"
+	"fmt"
 
 	"github.com/snsilvam/partydise.git/models"
 )
@@ -16,28 +14,6 @@ var OurCurrentServices = []models.OurServices{
 	{ID: "4", Title: "Ambientacion", DescriptionOfServices: "Cabinas de sonido, show de luces, show de burbujas chiquitecas para ambientar tu fiesta esepcial."},
 }
 
-// getOurServices as JSON.
-func getAllOurServices(c *gin.Context) {
-	c.IndentedJSON(http.StatusOK, OurCurrentServices)
-}
-
-// postAddService addds an service from JSON received in the request body.
-func postAddService(c *gin.Context) {
-	var newCurrentService models.OurServices
-
-	//Call BindJson to bind the received JSON to new services.
-	if err := c.BindJSON(&newCurrentService); err != nil {
-		return
-	}
-
-	//Add the new service to the slice.
-	OurCurrentServices = append(OurCurrentServices, newCurrentService)
-	c.IndentedJSON(http.StatusCreated, newCurrentService)
-}
 func main() {
-	router := gin.Default()
-	router.GET("/OurCurrentServices", getAllOurServices)
-	router.POST("/AddService", postAddService)
-	router.GET("/GetById")
-	router.Run("localhost:8080")
+	fmt.Println("Hello, now this project is uplouding. 🛩️")
 }
