@@ -1,5 +1,6 @@
 package main
 
+/*
 import (
 	"fmt"
 
@@ -16,4 +17,30 @@ var OurCurrentServices = []models.OurServices{
 
 func main() {
 	fmt.Println("Hello, now this project is uplouding. 🛩️")
+}
+*/
+
+import (
+	"context"
+	"fmt"
+
+	"cloud.google.com/go/firestore"
+)
+
+func main() {
+	ctx := context.Background()
+	client, err := firestore.NewClient(ctx, "partydise-378916")
+	if err != nil {
+		// TODO: Handle error.
+		fmt.Println("Error: ", err)
+	}
+	OurServices := client.Collection("OurServices")
+	ny := OurServices.Doc("mLAl4C8lXSmjMpmxQLnK")
+	docsnap, err := ny.Get(ctx)
+	if err != nil {
+		// TODO: Handle error.
+		fmt.Println("Error: ", err)
+	}
+	dataMap := docsnap.Data()
+	fmt.Println(dataMap)
 }
